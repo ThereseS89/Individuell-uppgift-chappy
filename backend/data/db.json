@@ -1,0 +1,59 @@
+
+{
+	"users": [
+		{
+		  "id": 1,
+		  "username": "CrazyCatLady",
+		  "password": "meow123"
+		},
+		{
+		  "id": 2,
+		  "username": "NinjaPenguin",
+		  "password": "iceblade"
+		},
+		{
+		  "id": 3,
+		  "username": "CaptainBanana",
+		  "password": "peels4u"
+		}, 
+		{
+			"id": 4,
+			"username": "SillyBanana",
+			"password": "giggles123"
+		},
+		{
+			"id": 5,
+			"username": "DancingPotato",
+			"password": "mashedgroove"
+		}
+
+	  ],
+	  
+
+	"channels": [
+		{
+			"id": "channel1",
+			"name": "koda"
+		},
+		{
+			"id": "channel2",
+			"name": "random"
+		},
+		{
+			"id": "channel3",
+			"name": "grupp1"
+		},
+		{
+			"id": "channel4",
+			"name": "grupp2"
+		},
+		{
+			"id": "channel5",
+			"name": "grupp3"
+		}
+
+	]
+
+
+}
+
