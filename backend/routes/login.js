@@ -12,6 +12,8 @@ const db = getDb()
 const secret = process.env.SECRET 
 const router = express.Router()
 
+
+
 router.post('/', async (req, res) => {
 	await db.read()
 	console.log('Database:', db.data.users);
@@ -34,7 +36,7 @@ router.post('/', async (req, res) => {
 		return
 	}
 
-
+// Skapar och skickar en jwt
 const hour = 60 * 60
 const payload = { userId: found.id }
 const options = { expiresIn: 2 * hour }
