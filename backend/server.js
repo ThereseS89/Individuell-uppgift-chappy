@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url'
 import usersRouter from './routes/users.js'
 import channelsRouter from './routes/channels.js'
 import messagesRouter from './routes/messages.js'
+import myPageRouter from './routes/mypage.js'
 
 
 const port = process.env.PORT || 4767
@@ -25,6 +26,8 @@ app.use(express.static(dist))
 
 app.use('/', express.json())
 
+//routes
+app.use('/myPage', myPageRouter)
 app.use('/users', usersRouter)
 app.use('/channels', channelsRouter)
 app.use('/messages', messagesRouter)
