@@ -9,7 +9,11 @@ async function generateUserId() {
 return Math.max(maxId, currentUser.id)}, 0))
 return highestId + 1
 }
+
+
 async function generateMessageId() {
 	return Math.round(Math.random() * 1000000000)
 }
+
+
 export { generateUserId, generateMessageId }
