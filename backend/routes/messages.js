@@ -1,5 +1,6 @@
 import express from "express"
 import { getDb } from "../data/database.js"
+import { generateMessageId } from "../utilities/generateid.js"
 
 const router = express.Router()
 
@@ -13,7 +14,18 @@ router.get('/', async (req, res) => {
 
 	res.send(messages)
 })
+
 //POST
+router.post('/', async (req, res) => {
+	let newMessage = req.body
+		await db.read()
+		newMessage.id = await generateMessageId()
+		db.data.messages.push(newMessage)
+		await db.write()
+		res.send(newMessage)
+		console.log('success, new message')
+
+})
 //DELETE
 
 
