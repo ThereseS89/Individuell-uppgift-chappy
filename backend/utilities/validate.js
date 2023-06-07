@@ -14,4 +14,12 @@ function isValidUser(u) {
 		return true
 }
 
-export {isValidUser}
+function isValidId(message) {
+	let maybeId = Number(message) 
+	if(isNaN(maybeId) ) {
+		return false 
+	}
+	return maybeId >= 0  
+} 
+
+export {isValidUser, isValidId}
