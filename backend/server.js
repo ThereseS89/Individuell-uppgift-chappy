@@ -18,7 +18,6 @@ const secret = process.env.SECRET
 const app = express()
 const db = getDb()
 
-
 app.use((req, res, next) => {
 	console.log(`req.method, req.url`, req.body)
 	next()
