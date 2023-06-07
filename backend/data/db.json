@@ -52,5 +52,10 @@
       "id": "channel5",
       "name": "grupp3"
     }
+  ],
+  "messages": [
+	  {
+		  "message": "Hello World"
+	  }
   ]
 }
