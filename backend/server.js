@@ -13,6 +13,7 @@ import { getDb } from './data/database.js'
 import jwt from 'jsonwebtoken'
 
 // viktiga variabler
+let process;
 const port = process.env.PORT || 4767
 const secret = process.env.SECRET 
 const app = express()

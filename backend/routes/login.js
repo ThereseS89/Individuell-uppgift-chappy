@@ -6,7 +6,7 @@ dotenv.config();
 
 
 // spara lösenord och autensiering med JWT
-
+let process;
 const db = getDb()
 
 const secret = process.env.SECRET 
