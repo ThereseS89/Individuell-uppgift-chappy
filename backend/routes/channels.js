@@ -41,9 +41,6 @@ router.get('/:channelId', (req, res) => {
 
 		console.log(`User "${user.username}" has access to channel ${channelId}.`)
 
-		req.url = `/messages?channelId=${channelId}`
-		req.method = 'POST'
-
 		res.send({
 			message: `Welcome to ${channelName}`}) 
 		

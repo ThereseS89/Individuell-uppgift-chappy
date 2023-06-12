@@ -45,12 +45,13 @@ const [channels, setChannels] = useState([])
 	
 		<nav>
 		<ul>
+			<li> [Kanaler] </li>
 			{channels.map((channel) => (
 				
 				<div
 				className="channels-container"
 				key={channels.id}>
-					<li> [Kanaler] </li>
+					
 					<li onClick={() => {handleAccessToChannel(channel.id)}}> {channel.name} </li>
 					<span>{error}</span>
 				</div> 

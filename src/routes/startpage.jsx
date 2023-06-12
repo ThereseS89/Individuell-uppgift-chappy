@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { NavLink } from "react-router-dom"
 import { useRecoilState } from "recoil"
 import { loggedInState } from "../atoms/loggedIn.js"
 
