@@ -1,16 +1,18 @@
 import { NavLink} from "react-router-dom"
 import { handleGetData } from "../utils/authchannels"
 import { useNavigate } from 'react-router-dom' 
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { getChannels } from "../utils/getChannels.js"
 
 
 
 const Side = () => {
 const navigate = useNavigate()
 const [errorMessage, setErrorMessage ] = useState([])
+const [channels, setChannels] = useState([])
 
-	const handleAccessToChannel = async () => {
-		const maybeJwt = await handleGetData()
+	const handleAccessToChannel = async (channelId) => {
+		const maybeJwt = await handleGetData(channelId)
 		console.log('handleAcces körs')
 		if(maybeJwt) {
 			navigate('/random')
@@ -20,9 +22,29 @@ const [errorMessage, setErrorMessage ] = useState([])
 
 	}
 
+	useEffect(() => {
+
+		async function fetchData() {
+			const channelsData = await getChannels();
+			setChannels(channelsData)
+		}
+		fetchData()
+	}, []);
+
 	return (
 		<nav>
 		<ul>
+			{channels.map((channel) => (
+
+				<div
+				className="channels-container"
+				key={channels.id}>
+					<li>{channel.name}</li>
+				</div>
+
+			)
+
+			)}
 			<li> [Kanaler] </li>
 			<li><NavLink to="/koda"> #koda </NavLink></li>
 			<li><p onClick={() => {handleAccessToChannel()}}> #random </p></li>
