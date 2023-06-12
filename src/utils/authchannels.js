@@ -3,7 +3,7 @@
 const sessionStorageKey = 'chappy-jwt'
 
 export const handleGetData = async (channelId) => {
-	
+	console.log('handleGetData körs')
 	let maybeJwt = sessionStorage.getItem(sessionStorageKey)
 	
 	let options = {
@@ -13,7 +13,7 @@ export const handleGetData = async (channelId) => {
 		options.headers.Authorization = "Bearer: " + maybeJwt
 	}
 	
-	let response = await fetch('/:channelId', options)
+	let response = await fetch(`http://localhost:8080/${channelId}`, options)
 	let data = await response.json()
 
 	if(response){

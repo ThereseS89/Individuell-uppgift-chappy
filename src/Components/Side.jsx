@@ -1,4 +1,4 @@
-import { NavLink} from "react-router-dom"
+
 import { handleGetData } from "../utils/authchannels"
 import { useNavigate } from 'react-router-dom' 
 import { useState, useEffect } from "react"
@@ -12,7 +12,7 @@ const [error, setError ] = useState("")
 const [channels, setChannels] = useState([])
 
 	const handleAccessToChannel = async (channelId) => {
-		const maybeJwt = await handleGetData(channelId)
+		const maybeJwt = await handleGetData()
 		console.log('handleAcces körs')
 		if(maybeJwt) {
 			if(channelId === 'channel1'){
