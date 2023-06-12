@@ -11,7 +11,7 @@ const [errorMessage, setErrorMessage ] = useState([])
 
 	const handleAccessToChannel = async () => {
 		const maybeJwt = await handleGetData()
-
+		console.log('handleAcces körs')
 		if(maybeJwt) {
 			navigate('/random')
 		} else {
@@ -25,7 +25,7 @@ const [errorMessage, setErrorMessage ] = useState([])
 		<ul>
 			<li> [Kanaler] </li>
 			<li><NavLink to="/koda"> #koda </NavLink></li>
-			<li><p onClick={() => {handleAccessToChannel()}}> #random </p></li>
+			<li><p onClick={() => handleAccessToChannel()}> #random </p></li>
 			<p>{errorMessage}</p>
 			<li className="locked"><NavLink to="/gruppEtt"> #grupp1 🔒 </NavLink></li>
 			<li className="selected"><NavLink to="/gruppTvå"> #grupp2 🔑 </NavLink></li>

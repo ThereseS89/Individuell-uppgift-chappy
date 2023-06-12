@@ -19,7 +19,7 @@ export const handleGetData = async () => {
 	let data = await response.json()
 
 	if(response){
-	setMessage( data.message )
+		console.log('getdata' , data, maybeJwt)
 		return maybeJwt
 	} else {
 		return null
