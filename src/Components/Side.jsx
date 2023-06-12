@@ -8,16 +8,26 @@ import { getChannels } from "../utils/getChannels.js"
 
 const Side = () => {
 const navigate = useNavigate()
-const [errorMessage, setErrorMessage ] = useState([])
+const [error, setError ] = useState("")
 const [channels, setChannels] = useState([])
 
 	const handleAccessToChannel = async (channelId) => {
 		const maybeJwt = await handleGetData(channelId)
 		console.log('handleAcces körs')
 		if(maybeJwt) {
-			navigate('/random')
+			if(channelId === 'channel1'){
+				navigate('/koda')
+			} else if(channelId === 'channel2'){
+				navigate('/random')
+			} else if(channelId === 'channel3'){
+				navigate('/gruppEtt')
+			} else if(channelId === 'channel4'){
+				navigate('/gruppTvå')
+			} else if(channelId === 'channel5'){
+				navigate('/gruppTre')
+			}
 		} else {
-			setErrorMessage('Du måste vara inloggad för att ha tillgång till denna sida')
+			setError('Du måste vara inloggad för att ha tillgång till denna sida')
 		}
 
 	}
@@ -32,27 +42,23 @@ const [channels, setChannels] = useState([])
 	}, []);
 
 	return (
+	
 		<nav>
 		<ul>
 			{channels.map((channel) => (
-
+				
 				<div
 				className="channels-container"
 				key={channels.id}>
-					<li onClick={() => {handleAccessToChannel(channel.id)}}>{channel.name}</li>
-				</div>
+					<li> [Kanaler] </li>
+					<li onClick={() => {handleAccessToChannel(channel.id)}}> {channel.name} </li>
+					<span>{error}</span>
+				</div> 
 
-			)
+			))}
 
-			)}
-			<li> [Kanaler] </li>
-			<li><NavLink to="/koda"> #koda </NavLink></li>
-			<li> #random</li>
-			<p>{errorMessage}</p>
-			<li className="locked"><NavLink to="/gruppEtt"> #grupp1 🔒 </NavLink></li>
-			<li className="selected"><NavLink to="/gruppTvå"> #grupp2 🔑 </NavLink></li>
-			<li className="locked"><NavLink to="/gruppTre"> #grupp3 🔒 </NavLink></li>
-			<li> <hr/> </li>
+			
+			<hr/>
 			<li title="Direktmeddelanden"> [DM] </li>
 			<li><a href="#">PratgladPelle</a></li>
 			<li><a href="#">SocialaSara</a></li>
