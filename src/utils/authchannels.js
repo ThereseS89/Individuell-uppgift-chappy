@@ -10,7 +10,7 @@ export const handleGetData = async (channelId) => {
 		headers: {}
 	}
 	if( maybeJwt ) {
-		options.headers.Authorization = "Bearer: " + maybeJwt
+		options.headers.Authorization = "Bearer " + maybeJwt
 	}
 	
 	let response = await fetch(`http://localhost:8080/channels/${channelId}`, options)
