@@ -39,7 +39,7 @@ const [channels, setChannels] = useState([])
 				<div
 				className="channels-container"
 				key={channels.id}>
-					 <li onClick={() => {handleAccessToChannel(channel.id)}}>{channel.name}</li>
+					<li onClick={() => {handleAccessToChannel(channel.id)}}>{channel.name}</li>
 				</div>
 
 			)
@@ -47,7 +47,7 @@ const [channels, setChannels] = useState([])
 			)}
 			<li> [Kanaler] </li>
 			<li><NavLink to="/koda"> #koda </NavLink></li>
-			<li>}> #random </p></li>
+			<li> #random</li>
 			<p>{errorMessage}</p>
 			<li className="locked"><NavLink to="/gruppEtt"> #grupp1 🔒 </NavLink></li>
 			<li className="selected"><NavLink to="/gruppTvå"> #grupp2 🔑 </NavLink></li>
