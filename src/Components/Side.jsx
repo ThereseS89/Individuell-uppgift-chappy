@@ -53,10 +53,10 @@ const [channels, setChannels] = useState([])
 				key={channels.id}>
 					
 					<li onClick={() => {handleAccessToChannel(channel.id)}}> {channel.name} </li>
-					<span>{error}</span>
 				</div> 
 
 			))}
+			<span>{error}</span>
 
 			
 			<hr/>

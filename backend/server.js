@@ -13,7 +13,7 @@ import loginRouter from './routes/login.js'
 
 // viktiga variabler
 
-const port = process.env.PORT || 4767
+const port = process.env.PORT || 8080
 const app = express()
 
 
