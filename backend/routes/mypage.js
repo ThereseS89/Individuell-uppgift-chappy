@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
 	if(!isValidId(req.params.id)) {
 		res.sendStatus(400)
-		console.log('Delete one Product - Incorrect value has to be a number.')
+		console.log('Delete user - Incorrect value has to be a number.')
 		return
 	}
 	let id = Number(req.params.id)
@@ -36,7 +36,7 @@ router.delete('/:id', async (req, res) => {
 	let deleteUser = db.data.users.find(removedUser => removedUser.id === id)
 	if (!deleteUser) {
 		res.sendStatus(404)
-		console.log('Delete One product, Could not found id in the product-list ')
+		console.log('Delete user, Could not found id in the user-list ')
 		return
 	}
 	db.data.users = db.data.users.filter(newUser => newUser.id !== id)

@@ -6,7 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      
+      "/login": 'http://localhost:4767/',
+      "/channels": 'http//localhost:4767/'
     }
   }
 })

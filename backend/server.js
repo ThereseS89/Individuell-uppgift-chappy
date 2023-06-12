@@ -9,18 +9,17 @@ import channelsRouter from './routes/channels.js'
 import messagesRouter from './routes/messages.js'
 import myPageRouter from './routes/mypage.js'
 import loginRouter from './routes/login.js'
-import { getDb } from './data/database.js'
-import jwt from 'jsonwebtoken'
+
 
 // viktiga variabler
-let process;
+
 const port = process.env.PORT || 4767
-const secret = process.env.SECRET 
 const app = express()
-const db = getDb()
+
 
 app.use((req, res, next) => {
-	console.log(`req.method, req.url`, req.body)
+	console.log(`${req.method}, ${req.url}`, req.body)
+	console.log(req.headers.authorization)
 	next()
 })
 
@@ -42,30 +41,6 @@ app.get('*', (req, res) => {
 	res.sendFile(join(dist, 'index.html'))
 })
 
-app.get('/secret', (req, res) => {
-	let autHeader = req.headers.authorization
-	if( !autHeader) {
-		res.status(401).send({
-			message: 'unauthorized'
-		})
-		return
-	}
-	let token = autHeader.replace('Bearer ', '')
-
-	try {
-		let decoded = jwt.verify(token, secret)
-		let userId = decoded.userId
-		let user = db.data.users.find(user => user.id === userId)
-		console.log(`User "${user.username}" has access to secret data.`)
-
-		res.send({
-			message: 'Welcome'
-		})
-	} catch(error) {
-		console.log('GET /secret error: ' + error.message)
-		res.sendStatus(401)
-	}
-})
 
 app.listen(port, () => {
 	console.log(`server is listening on port ${port}`)

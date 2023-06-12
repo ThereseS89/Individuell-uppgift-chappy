@@ -1,8 +1,10 @@
 import express from "express"
 import { getDb } from "../data/database.js"
 import jwt from 'jsonwebtoken'
+import dotenv from 'dotenv';
+dotenv.config();
 
-let process;
+
 const router = express.Router()
 const db = getDb()
 const secret = process.env.SECRET 
@@ -21,6 +23,7 @@ router.get('/:channelId', (req, res) => {
 	const channelId = req.params.channelId
 	const channelName= req.params.name
 	let autHeader = req.headers.authorization
+	console.log('secret: ', autHeader)
 	if( !autHeader) {
 		res.status(401).send({
 			message: 'unauthorized'
