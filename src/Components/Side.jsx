@@ -12,7 +12,7 @@ const [error, setError ] = useState("")
 const [channels, setChannels] = useState([])
 
 	const handleAccessToChannel = async (channelId) => {
-		const maybeJwt = await handleGetData()
+		const maybeJwt = await handleGetData(channelId)
 		console.log('handleAcces körs')
 		if(maybeJwt) {
 			if(channelId === 'channel1'){
