@@ -14,6 +14,11 @@ export const handleGetData = async (channelId) => {
 	}
 	
 	let response = await fetch(`http://localhost:8080/channels/${channelId}`, options)
+
+	if(!response.ok) {
+		console.error('Error:', response.status, response.statusText);
+		return null 
+	}
 	let data = await response.json()
 
 	if(response){

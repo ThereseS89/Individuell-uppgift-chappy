@@ -22,6 +22,7 @@ router.post('/', async (req, res) => {
 
 	if(isValidUser(possibleNewUser)) {
 		await db.read()
+		console.log("Received new user data:", possibleNewUser);
 		if( await isUser(possibleNewUser)){
 			res.sendStatus(409)
 			console.log('User does already exist')
@@ -29,7 +30,7 @@ router.post('/', async (req, res) => {
 			possibleNewUser.id = await generateUserId()
 			db.data.users.push(possibleNewUser)
 			await db.write()
-			res.send(possibleNewUser)
+			res.status(201).send({status: 'success'})
 			console.log('success, new user added')
 		}
 	} else {
@@ -40,7 +41,9 @@ router.post('/', async (req, res) => {
 })
 
 	async function isUser(u) {
-		let existingUser = db.data.users.some(user => user.name === u.name )
+		let existingUser = db.data.users.some(user => {
+			console.log("Comparing:", user.username, "and", u.username);
+			return user.username === u.username} )
 
 		if(existingUser) {
 			return true
