@@ -1,13 +1,15 @@
+import { useNavigate } from "react-router-dom"
 import { useRecoilState } from "recoil"
 const sessionStorageKey = 'chappy-jwt'
 import { loggedInState } from "../atoms/loggedIn.js"
 
 const Header = () => {
 	const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState)
-
+	const navigate = useNavigate() 
 	const handleLogout = async () => {
 		sessionStorage.removeItem(sessionStorageKey)
 		setIsLoggedIn(false)
+		navigate('/')
 	}
 
 	return (

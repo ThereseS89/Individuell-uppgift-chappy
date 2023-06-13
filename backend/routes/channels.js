@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:channelId', (req, res) => {
 	const channelId = req.params.channelId
-	const channelName= req.params.name
+	
 	let autHeader = req.headers.authorization
 	console.log('secret: ', autHeader)
 	if( !autHeader) {
@@ -42,7 +42,7 @@ router.get('/:channelId', (req, res) => {
 		console.log(`User "${user.username}" has access to channel ${channelId}.`)
 
 		res.send({
-			message: `Welcome to ${channelName}`}) 
+			message: `Welcome to ${channelId}`}) 
 		
 	} catch(error) {
 		console.log('GET /channel/:channelId error: ' + error.message)
