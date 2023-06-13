@@ -27,12 +27,12 @@ router.post('/', async (req, res) => {
 	console.log('Found user:', found);
 	if ( !found ){
 		res.sendStatus(401)
-		console.log('Felaktigt användarnamn')
+		console.log('Wrong username')
 		return
 	}
 	if( found.password !== password){
 		res.sendStatus(401)
-		console.log('Felaktigt lösenord')
+		console.log('Wrong password')
 		return
 	}
 

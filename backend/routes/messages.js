@@ -42,7 +42,7 @@ router.put('/:id', async (req, res) => {
 	let oldMessageIndex = db.data.messages.findIndex(message => message.id === id)
 	if( oldMessageIndex === -1 ) {
 		res.sendStatus(404)
-		console.log('Could not found the id to change the product..')
+		console.log('Could not found the id to change the message..')
 		return
 	}
 	editedMessage.id = id
@@ -57,7 +57,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
 	if(!isValidId(req.params.id)) {
 		res.sendStatus(400)
-		console.log('Delete one Product - Incorrect value has to be a number.')
+		console.log('Delete a message - Incorrect value has to be a number.')
 		return
 	}
 	let id = Number(req.params.id)
@@ -65,7 +65,7 @@ router.delete('/:id', async (req, res) => {
 	let deleteMessage = db.data.messages.find(message => message.id === id)
 	if (!deleteMessage) {
 		res.sendStatus(404)
-		console.log('Delete One product, Could not found id in the product-list ')
+		console.log('Delete a message, Could not found id in the message-list ')
 		return
 	}
 	db.data.messages = db.data.messages.filter(message => message.id !== id)

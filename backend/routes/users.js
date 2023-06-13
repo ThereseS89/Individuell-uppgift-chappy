@@ -2,6 +2,7 @@ import express from "express"
 import { getDb } from "../data/database.js"
 import { generateUserId } from "../utilities/generateid.js"
 import { isValidUser } from "../utilities/validate.js"
+import { reorderKeys } from "../utilities/reorderKeys.js"
 
 const router = express.Router()
 const db = getDb()
@@ -28,7 +29,8 @@ router.post('/', async (req, res) => {
 			console.log('User does already exist')
 		} else {
 			possibleNewUser.id = await generateUserId()
-			db.data.users.push(possibleNewUser)
+			const reorderedUser = reorderKeys(possibleNewUser)
+			db.data.users.push(reorderedUser)
 			await db.write()
 			res.status(201).send({status: 'success'})
 			console.log('success, new user added')

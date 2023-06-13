@@ -1,14 +1,15 @@
 import { setOpenRegisterState } from "../atoms/openRegister.js";
+import { setUserStateData } from "../atoms/setUserState.js";
 import { useRecoilState } from "recoil";
 import { registerUser } from "../utils/postUser.js";
 import { getUsers } from "../utils/getUsers.js";
 import { useState } from "react";
-import { useEffect } from "react";
+//import { useEffect } from "react";
 
 
 const Register = () => {
 	const [openRegister, setOpenRegister] = useRecoilState(setOpenRegisterState);
-	const [ users, setUsers ] = useState([])
+	const [ users, setUsers ] = useRecoilState(setUserStateData)
 	const [ username, setUserName ] = useState('')
 	const [ password, setPassword ] = useState('')
 
@@ -16,13 +17,13 @@ const Register = () => {
 		setOpenRegister(false)
 	}
 
-	useEffect(() => {
-		async function fetchData() {
-			const userData = await getUsers()
-			setUsers(userData)
-		}
-		fetchData()
-	}, [])
+	// useEffect(() => {
+	// 	async function fetchData() {
+	// 		const userData = await getUsers()
+	// 		setUsers(userData)
+	// 	}
+	// 	fetchData()
+	// }, [])
 
 	async function checkUserExists(username) {
 		const usersData = await getUsers();

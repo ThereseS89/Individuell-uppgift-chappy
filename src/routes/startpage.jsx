@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { loggedInState } from "../atoms/loggedIn.js";
 import Register from "../Components/Register.jsx";
 import { setOpenRegisterState } from "../atoms/openRegister.js";
+import { setStoreToken } from "../atoms/storeToken.js";
 
 const sessionStorageKey = "chappy-jwt";
 
@@ -13,6 +14,7 @@ const StartPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [openRegister, setOpenRegister] = useRecoilState(setOpenRegisterState);
+  const [storedToken, setStoredToken ] = useRecoilState(setStoreToken)
 
   useEffect(() => {
     if (sessionStorage.getItem(sessionStorageKey)) {
@@ -40,25 +42,32 @@ const StartPage = () => {
 
     const data = await response.json();
     let jwt = data.token;
+    
     sessionStorage.setItem(sessionStorageKey, jwt);
-
+    
+    setStoredToken(username)
     setIsLoggedIn(true);
+    setOpenRegister(false)
     console.log(sessionStorageKey, jwt);
+   
   };
 
   function handleOpenRegister() {
     console.log("handleOpen körs");
-    if (!openRegister) {
-      setOpenRegister(true);
+    if (!isLoggedIn) {
+      setOpenRegister(!openRegister);
     } else {
       setOpenRegister(false);
     }
+    
   }
+
 
   return (
     <>
-	<p> Hello</p>
-      {!isLoggedIn && !openRegister ? (
+	
+      {!isLoggedIn ? (
+       !openRegister ? (
         <div className="login-form">
           <h2>Logga in</h2>
           <label>namn</label>
@@ -90,7 +99,10 @@ const StartPage = () => {
             Registrera dig här!
           </button>
         </div>
-      ) : <Register />} 
+      ) : ( 
+      <Register /> 
+      )
+      ) : (<div><p>Välkommen in i Värmen</p></div>)}
 	
     </>
   );
