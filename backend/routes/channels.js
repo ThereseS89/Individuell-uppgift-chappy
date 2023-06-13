@@ -12,7 +12,7 @@ const secret = process.env.SECRET
 // Här ska alla metoder som behövs komma in
 
 // GET
-router.get('/', async (req, res) => {
+router.get('/api', async (req, res) => {
 	await db.read()
 	let channels = db.data.channels
 

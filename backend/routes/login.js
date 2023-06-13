@@ -14,7 +14,7 @@ const router = express.Router()
 
 
 
-router.post('/', async (req, res) => {
+router.post('/api', async (req, res) => {
 	await db.read()
 	console.log('Database:', db.data.users);
 	const { username, password } = req.body

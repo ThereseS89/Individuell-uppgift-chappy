@@ -8,7 +8,7 @@ const db = getDb()
 // Här ska alla metoder som behövs komma in
 
 // GET
-router.get('/', async (req, res) => {
+router.get('/api', async (req, res) => {
 	await db.read()
 	let users = db.data.users
 
