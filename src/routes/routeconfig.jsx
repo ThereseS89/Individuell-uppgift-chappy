@@ -6,6 +6,7 @@ import Random from "./random.jsx";
 import GruppEtt from "./gruppEtt.jsx";
 import GruppTvå from "./gruppTvå.jsx";
 import GruppTre from "./gruppTre.jsx";
+import MyPage from "./myPage.jsx";
 
 const router = createBrowserRouter ([
 	{
@@ -35,6 +36,10 @@ const router = createBrowserRouter ([
 					{
 						path:'/gruppTre',
 						element: <GruppTre />
+					},
+					{
+						path: '/mypage',
+						element: <MyPage />
 					}
 
 				]
