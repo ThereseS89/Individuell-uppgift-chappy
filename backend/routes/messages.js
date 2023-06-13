@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 })
 
 //POST
-router.post('/api', async (req, res) => {
+router.post('/', async (req, res) => {
 	let newMessage = req.body
 		await db.read()
 		newMessage.id = await generateMessageId()

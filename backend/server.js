@@ -13,7 +13,7 @@ import loginRouter from './routes/login.js'
 
 // viktiga variabler
 
-const port = process.env.PORT 
+const port = process.env.PORT || 8080
 const app = express()
 
 
@@ -28,14 +28,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const dist = join(__dirname, '../dist')
 app.use(express.static(dist))
 
-app.use('/api', express.json())
+app.use('/', express.json())
 
 //routes
-app.use('/api/login', loginRouter)
-app.use('/api/myPage', myPageRouter)
-app.use('/api/users', usersRouter)
-app.use('/api/channels', channelsRouter)
-app.use('/api/messages', messagesRouter)
+app.use('/login', loginRouter)
+app.use('/myPage', myPageRouter)
+app.use('/users', usersRouter)
+app.use('/channels', channelsRouter)
+app.use('/messages', messagesRouter)
 
 app.get('*', (req, res) => {
 	res.sendFile(join(dist, 'index.html'))

@@ -1,7 +1,7 @@
 export async function getChannels() {
 	console.log('getting channels...')
 	try {
-		const response = await fetch('/api/channels')
+		const response = await fetch('/channels')
 		const channelsData = await response.json()
 		
 console.log ('Response from API:' , channelsData)

@@ -56,7 +56,7 @@ const StartPage = () => {
 
   return (
     <>
-	<h2>HEj jag heter detrher</h2>
+	
       {!isLoggedIn ? (
         <div className="login-form">
           <h2>Logga in</h2>

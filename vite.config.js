@@ -6,7 +6,11 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      "/api": 'http://localhost:8080/',
+      "/login": 'http://localhost:8080/',
+      "/channels": 'http://localhost:8080/',
+      "/myPage":'http://localhost:8080/',
+      "/users": 'http://localhost:8080/',
+      "/messages": 'http://localhost:8080/'
     }
   }
 })
