@@ -23,7 +23,7 @@ This Api is made for the chatapplication Chappy. It is created with react, node.
 |sender  | String | The username of the one that sent the message|
 |message | String | The text of the message|
 |channel | String | the name of the channel the message was sent in|
-|time    | Number | The time the message was sent|
+
 <br><br>
 
 ### Channels:
@@ -46,7 +46,7 @@ This Api is made for the chatapplication Chappy. It is created with react, node.
 | GET  |/channels/|:channelId|-|A specific channel based on id|
 | POST |/login|-|req.body: {username, password}| sends a request to login|
 | GET |/messages|-|-|List with all the messages|
-| POST|/messages|-|req.body: {message} | sends a new message|
+| POST|/messages|-|req.body: {message, username, channel} | sends a new message|
 | PUT |/messages/|:id| req.body: {message}| changes a existing message|
 | DELETE | /messages|:id|-|deletes a message|
 | GET |/mypage|:id|-|get a specific user|
@@ -56,7 +56,8 @@ This Api is made for the chatapplication Chappy. It is created with react, node.
 # 
 Every method returns a string in JSON format like this:
 
-```{
+```json
+    {
       "id": 1,
       "username": "CrazyCatLady",
       "password": "meow123"

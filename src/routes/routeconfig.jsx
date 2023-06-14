@@ -4,8 +4,6 @@ import StartPage from "./startpage.jsx";
 import Koda from "./koda.jsx";
 import Random from "./random.jsx";
 import GruppEtt from "./gruppEtt.jsx";
-import GruppTvå from "./gruppTvå.jsx";
-import GruppTre from "./gruppTre.jsx";
 import MyPage from "./myPage.jsx";
 
 const router = createBrowserRouter ([
@@ -28,14 +26,6 @@ const router = createBrowserRouter ([
 					{
 						path:'/gruppEtt',
 						element: <GruppEtt />
-					},
-					{
-						path:'/gruppTvå',
-						element: <GruppTvå />
-					},
-					{
-						path:'/gruppTre',
-						element: <GruppTre />
 					},
 					{
 						path: '/mypage',

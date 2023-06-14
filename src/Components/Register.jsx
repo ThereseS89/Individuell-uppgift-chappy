@@ -4,26 +4,21 @@ import { useRecoilState } from "recoil";
 import { registerUser } from "../utils/postUser.js";
 import { getUsers } from "../utils/getUsers.js";
 import { useState } from "react";
+import { setErrorState } from "../atoms/setError.js";
 //import { useEffect } from "react";
 
 
 const Register = () => {
-	const [openRegister, setOpenRegister] = useRecoilState(setOpenRegisterState);
+	const [ openRegister, setOpenRegister ] = useRecoilState(setOpenRegisterState);
 	const [ users, setUsers ] = useRecoilState(setUserStateData)
 	const [ username, setUserName ] = useState('')
 	const [ password, setPassword ] = useState('')
+	const [ error, setError] = useRecoilState(setErrorState)
 
 	const handleCloseRegister = () => {
 		setOpenRegister(false)
+		setError('')
 	}
-
-	// useEffect(() => {
-	// 	async function fetchData() {
-	// 		const userData = await getUsers()
-	// 		setUsers(userData)
-	// 	}
-	// 	fetchData()
-	// }, [])
 
 	async function checkUserExists(username) {
 		const usersData = await getUsers();

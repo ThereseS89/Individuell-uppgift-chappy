@@ -4,7 +4,7 @@ import { loggedInState } from "../atoms/loggedIn.js";
 import Register from "../Components/Register.jsx";
 import { setOpenRegisterState } from "../atoms/openRegister.js";
 import { setStoreToken } from "../atoms/storeToken.js";
-
+import { setErrorState } from "../atoms/setError.js";
 const sessionStorageKey = "chappy-jwt";
 
 const StartPage = () => {
@@ -15,6 +15,7 @@ const StartPage = () => {
   const [password, setPassword] = useState("");
   const [openRegister, setOpenRegister] = useRecoilState(setOpenRegisterState);
   const [storedToken, setStoredToken ] = useRecoilState(setStoreToken)
+  const [error, setError ] = useRecoilState(setErrorState)
 
   useEffect(() => {
     if (sessionStorage.getItem(sessionStorageKey)) {
@@ -23,6 +24,7 @@ const StartPage = () => {
   }, [setIsLoggedIn]);
 
   const handleLogin = async () => {
+    setError('')
     let body = { username, password };
     let options = {
       method: "post",
@@ -48,11 +50,13 @@ const StartPage = () => {
     setStoredToken(username)
     setIsLoggedIn(true);
     setOpenRegister(false)
+    console.log(storedToken)
     console.log(sessionStorageKey, jwt);
    
   };
 
   function handleOpenRegister() {
+    setError('')
     console.log("handleOpen körs");
     if (!isLoggedIn) {
       setOpenRegister(!openRegister);

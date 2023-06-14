@@ -123,3 +123,7 @@ nav .unread {
 .align-right {
 	text-align: right;
 }
+
+.channel-name {
+	cursor: pointer;
+}

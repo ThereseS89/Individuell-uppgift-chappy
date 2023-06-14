@@ -1,33 +1,39 @@
-
-import { handleGetData } from "../utils/authchannels"
+import { setErrorState } from "../atoms/setError.js"
+import { handleGetData } from "../utils/authchannels.js"
 import { useNavigate } from 'react-router-dom' 
 import { useState, useEffect } from "react"
 import { getChannels } from "../utils/getChannels.js"
+import { useRecoilState } from "recoil"
 
 
 
 const Side = () => {
 const navigate = useNavigate()
-const [error, setError ] = useState("")
+const [error, setError ] = useRecoilState(setErrorState)
 const [channels, setChannels] = useState([])
 
 	const handleAccessToChannel = async (channelId) => {
-		const maybeJwt = await handleGetData(channelId)
-		console.log('handleAcces körs')
-		if(maybeJwt) {
-			if(channelId === 'channel1'){
+		const channel = channels.find((channel) => channel.id === channelId)
+		if (channel) {
+			if (channel.public) {
 				navigate('/koda')
-			} else if(channelId === 'channel2'){
-				navigate('/random')
-			} else if(channelId === 'channel3'){
-				navigate('/gruppEtt')
-			} else if(channelId === 'channel4'){
-				navigate('/gruppTvå')
-			} else if(channelId === 'channel5'){
-				navigate('/gruppTre')
+			} else  {
+				const maybeJwt = await handleGetData(channelId)
+				console.log('handleAcces körs')
+				if(maybeJwt) {
+					if(channelId === 'channel2'){
+						navigate('/random')
+						
+					} else if(channelId === 'channel3'){
+						navigate('/gruppEtt')
+						
+					}  else {
+						setError('Du måste vara inloggad för att ha tillgång till denna sida')
+					}
+				} else {
+					setError('Du måste vara inloggad för att ha tillgång till denna sida')
+				} 
 			}
-		} else {
-			setError('Du måste vara inloggad för att ha tillgång till denna sida')
 		}
 
 	}
@@ -50,9 +56,11 @@ const [channels, setChannels] = useState([])
 				
 				<div
 				className="channels-container"
-				key={channels.id}>
+				key={channel.id}>
 					
-					<li onClick={() => {handleAccessToChannel(channel.id)}}> {channel.name} </li>
+					<li className="channel-name"
+					onClick={() => 
+					{handleAccessToChannel(channel.id)}}> {channel.name} </li>
 				</div> 
 
 			))}
@@ -61,11 +69,7 @@ const [channels, setChannels] = useState([])
 			
 			<hr/>
 			<li title="Direktmeddelanden"> [DM] </li>
-			<li><a href="#">PratgladPelle</a></li>
-			<li><a href="#">SocialaSara</a></li>
-			<li><a href="#">TrevligaTommy</a></li>
-			<li><a href="#">VänligaVera</a></li>
-			<li><a href="#">GladaGustav</a></li>
+			
 		</ul>
 	</nav>
 	)

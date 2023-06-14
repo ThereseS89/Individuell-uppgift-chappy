@@ -26,61 +26,26 @@
       "password": "mashedgroove"
     },
     {
-      "name": "crazyhatlady",
-      "password": "hat234",
-      "id": 6
-    },
-    {
-      "name": "crazyhatlady3000",
-      "password": "hat774",
-      "id": 7
-    },
-    {
-      "userName": "FunnyBynny",
-      "password": "morot345",
-      "id": 8
-    },
-    {
+      "id": 6,
       "username": "FunnyBunny",
-      "password": "morot5674",
-      "id": 9
-    },
-    {
-      "username": "MonsterOla",
-      "password": "buu34",
-      "id": 10
-    },
-    {
-      "id": 11,
-      "username": "hejSvej",
-      "password": "hopplahpp"
-    },
-    {
-      "id": 12,
-      "username": "FunnyHoney",
       "password": "morot345"
     }
   ],
   "channels": [
     {
       "id": "channel1",
-      "name": "koda"
+      "name": "koda",
+      "public": true
     },
     {
       "id": "channel2",
-      "name": "random"
+      "name": "random",
+      "public": false
     },
     {
       "id": "channel3",
-      "name": "grupp1"
-    },
-    {
-      "id": "channel4",
-      "name": "grupp2"
-    },
-    {
-      "id": "channel5",
-      "name": "grupp3"
+      "name": "grupp1",
+      "public": false
     }
   ],
   "messages": [
@@ -88,8 +53,49 @@
       "id": 1,
       "sender": "CrazyCatLady",
       "message": "Hello World",
-      "channel": "grupp3",
-      "time": "13:06"
+      "channel": "grupp3"
+    },
+    {
+      "sender": "FunnyBunny",
+      "message": "Hej",
+      "channel": "koda",
+      "id": 668759694
+    },
+    {
+      "sender": "FunnyBunny",
+      "message": "Hej",
+      "channel": "koda",
+      "id": 40365046
+    },
+    {
+      "sender": "FunnyBunny",
+      "message": "Hej",
+      "channel": "koda",
+      "id": 97835031
+    },
+    {
+      "sender": "FunnyBunny",
+      "message": "Hej",
+      "channel": "koda",
+      "id": 537725998
+    },
+    {
+      "sender": "FunnyBunny",
+      "message": "Jag heter FunnyBunny",
+      "channel": "koda",
+      "id": 218253333
+    },
+    {
+      "sender": "CrazyCatLady",
+      "message": "Vad gör du idag?",
+      "channel": "koda",
+      "id": 271298883
+    },
+    {
+      "sender": null,
+      "message": "Vad gör du imorgon?",
+      "channel": "koda",
+      "id": 937289192
     }
   ]
 }
