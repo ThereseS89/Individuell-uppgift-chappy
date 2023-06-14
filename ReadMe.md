@@ -26,6 +26,19 @@ This Api is made for the chatapplication Chappy. It is created with react, node.
 
 <br><br>
 
+### Directmessages:
+
+|Property|Datatype|Description|
+|:-------| :-----:| ---------:|
+| id     | Number | A uniqe number for every object |
+| sender | String | The username of the one sending the message|
+| reciever| String | The username of the one getting the message|
+| message | String | The text of message|
+
+<br><br>
+
+
+
 ### Channels:
 
 |Property|Datatype|Description|
@@ -49,6 +62,8 @@ This Api is made for the chatapplication Chappy. It is created with react, node.
 | POST|/messages|-|req.body: {message, username, channel} | sends a new message|
 | PUT |/messages/|:id| req.body: {message}| changes a existing message|
 | DELETE | /messages|:id|-|deletes a message|
+| GET |/directmessages|-|-| List with all the direct messages|
+| POST|/directmessages/username|req.params.username| req.body {username, message}
 | GET |/mypage|:id|-|get a specific user|
 | PUT |/mypage|:id|re.body: {username, password}| change a existing users username or password|
 | DELETE|/mypage|:id|-|deletes a specific user|

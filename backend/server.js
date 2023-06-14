@@ -9,6 +9,8 @@ import channelsRouter from './routes/channels.js'
 import messagesRouter from './routes/messages.js'
 import myPageRouter from './routes/mypage.js'
 import loginRouter from './routes/login.js'
+import directmessagesRouter from './routes/directmessages.js'
+
 
 
 // viktiga variabler
@@ -36,6 +38,7 @@ app.use('/myPage', myPageRouter)
 app.use('/users', usersRouter)
 app.use('/channels', channelsRouter)
 app.use('/messages', messagesRouter)
+app.use('/directMessages', directmessagesRouter)
 
 app.get('*', (req, res) => {
 	res.sendFile(join(dist, 'index.html'))

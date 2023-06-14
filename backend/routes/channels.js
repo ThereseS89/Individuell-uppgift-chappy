@@ -11,7 +11,7 @@ const secret = process.env.SECRET
 
 // Här ska alla metoder som behövs komma in
 
-// GET
+// GET - Få fram alla kanaler
 router.get('/', async (req, res) => {
 	await db.read()
 	let channels = db.data.channels
@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
 	res.send(channels)
 })
 
+// Få fram en specifik kanal
 router.get('/:channelId', (req, res) => {
 	const channelId = req.params.channelId
 	

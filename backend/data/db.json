@@ -97,5 +97,20 @@
       "channel": "koda",
       "id": 937289192
     }
+  ],
+  "directmessages": [
+    {
+      "id": 1,
+      "sender": "CrazyCatLady",
+      "reciever": "DancingPotato",
+      "message": "Hur är det potatismannen?"
+    },
+  
+    {
+      "id": 151826191,
+      "sender": "CrazyCatLady",
+      "reciever": "potatoman",
+      "message": "Hej potatismannen"
+    }
   ]
 }

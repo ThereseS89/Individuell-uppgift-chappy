@@ -5,7 +5,7 @@ import { isValidId } from "../utilities/validate.js";
 const router = express.Router()
 const db = getDb()
 
-// GET:id
+// GET:id - få fram den specifika användaren
 router.get('/:id', async (req, res) => {
 	let possibleId = Number(req.params.id)
 
@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
 	res.send(possibleUser)
 })
 
-// DELETE
+// DELETE - kunna ta bort sin användare
 router.delete('/:id', async (req, res) => {
 	if(!isValidId(req.params.id)) {
 		res.sendStatus(400)
@@ -45,7 +45,7 @@ router.delete('/:id', async (req, res) => {
 	console.log('The user is deleted.')
 } )
 
-// PUT
+// PUT - Kunna ändra lösenord eller användarnamn
 router.put('/:id', async (req, res) => {
 	if(!isValidId(req.params.id)) {
 		res.sendStatus(400)
