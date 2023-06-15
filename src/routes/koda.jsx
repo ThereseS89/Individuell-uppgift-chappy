@@ -43,6 +43,7 @@ const Koda = () => {
 						setMessages((prevMessages) => [...prevMessages, addedMessage])
 						console.log('Nu är meddelandet tillagt')
 						console.log('Nya meddelandet: ', addedMessage.message)
+						
 					}
 			} catch (error) {
 				console.log(error)
