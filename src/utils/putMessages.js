@@ -1,9 +1,12 @@
 
 
 export async function putMessage(messageId, message) {
-
+	console.log('PutMessages körs')
 	const changedMessage = {
-		message: message
+		
+		channel: message.channel,
+    	sender: message.sender,
+        message: message.message
 	}
 
 	const options ={
@@ -19,12 +22,13 @@ export async function putMessage(messageId, message) {
 		const statusObject = await response.json()
 		console.log('Response from API: ', statusObject)
 		console.log('response: ', response )
-		if(statusObject === 'success') {
+		if(statusObject.status === 'success') {
 			return true
 		} else {
 			return false
 		}
 		} catch(error) {
 			console.error('Find error: ', error)
+			return false
 		}
 }

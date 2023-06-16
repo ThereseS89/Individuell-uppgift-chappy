@@ -56,46 +56,28 @@
       "channel": "grupp3"
     },
     {
-      "sender": "FunnyBunny",
-      "message": "Hej",
+      "sender": null,
+      "message": "Hej och Välkommen till koda",
       "channel": "koda",
-      "id": 668759694
+      "id": 185074382
     },
     {
-      "sender": "FunnyBunny",
-      "message": "Hej",
+      "sender": "NinjaPenguin",
+      "message": "Hej Alla!",
       "channel": "koda",
-      "id": 40365046
+      "id": 35940096
     },
     {
-      "sender": "FunnyBunny",
-      "message": "Hej",
+      "sender": "CaptainBanana",
+      "message": "Någon som har kod att visa?",
       "channel": "koda",
-      "id": 97835031
-    },
-    {
-      "sender": "FunnyBunny",
-      "message": "Hej",
-      "channel": "koda",
-      "id": 537725998
-    },
-    {
-      "sender": "FunnyBunny",
-      "message": "Jag heter FunnyBunny",
-      "channel": "koda",
-      "id": 218253333
+      "id": 13664895
     },
     {
       "sender": "CrazyCatLady",
-      "message": "Vad gör du idag?",
+      "message": "Jag är ny här",
       "channel": "koda",
-      "id": 271298883
-    },
-    {
-      "sender": null,
-      "message": "Vad gör du imorgon?",
-      "channel": "koda",
-      "id": 937289192
+      "id": 396332077
     }
   ],
   "directmessages": [
@@ -105,7 +87,6 @@
       "reciever": "DancingPotato",
       "message": "Hur är det potatismannen?"
     },
-  
     {
       "id": 151826191,
       "sender": "CrazyCatLady",

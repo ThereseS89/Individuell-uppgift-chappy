@@ -1,45 +1,63 @@
 import { useEffect } from "react"
 import { useState } from "react"
+import { useRecoilState } from "recoil"
+import { setIdToDeleteState } from "../atoms/setIdToDeleteState.js"
 import deleteMessage from "../utils/deleteMessages.js"
 import { getMessages } from "../utils/getmessages.js"
+import { editMessageIdState } from "../atoms/editmessageIdState.js"
+import { putMessage } from "../utils/putMessages.js"
+import { setEditedMessageState } from "../atoms/setEditedMessageState.js"
+import { setShowInputEditState } from "../atoms/setShowInputEditState.js"
 
 const Settings = () => {
-	const [editMessageId, setEditMessageId] = useState(null)
-	const [editedMessage, setEditedMessage] = useState('')
+	const [editMessageId, setEditMessageId] = useRecoilState(editMessageIdState)
+	const [editedMessage, setEditedMessage] = useRecoilState(setEditedMessageState)
+	const [idToDelete, setIdToDelete] = useRecoilState(setIdToDeleteState)
 	const [messages, setMessages] = useState([])
+	const [showInputEdit, setShowInputEdit] = useRecoilState(setShowInputEditState)
 
-	useEffect(() => {
+	
 		async function fetchMessages() {
 			const messagesData = await getMessages()
 			setMessages(await messagesData)
 		}
-	})
+		
+	useEffect(() => {
+		fetchMessages()
+	}, [])
+	
+	
+	const handleDelete = async (id ) => {
+		
+		if(idToDelete) {
+			await deleteMessage(idToDelete)
 
-	const handleDelete = async (messageId) => {
-		await deleteMessage(messageId)
+		}
+			const updatedMessages = messages.filter((message) => message.id !== id)
+			setMessages(updatedMessages)
+		
 	}
+	
 
 	const editMessage = async (messageId) => {
-		setEditMessageId(messageId)
+		console.log('du klickade på editmessage')
 		const chosenMessage = messages.find((message) => message.id === messageId)
-		setEditedMessage(chosenMessage.message)
-	}
-
-	const handleSave = async (messageId, event) => {
-		event.preventDefault()
-		await editMessage(editedMessage)
-
-		const messagesData = await getMessages()
-		setMessages(await messagesData)
-
-		setEditMessageId(null)
+		if (chosenMessage) {
+			setEditMessageId(messageId)
+			setEditedMessage(chosenMessage.message)
+		}
+		console.log('du klickade på editmessage2')
+		setShowInputEdit(true)
+		console.log('editedMessage:', editedMessage)
+		console.log(editedMessage.id)
 	}
 	
 	return (
 		<div>
+			
 			<p onClick={handleDelete}>radera meddelande</p>
 			<p onClick={editMessage}> ändra meddelande</p>
-			<button type="button" onClick={(event) => handleSave( event)}>Avbryt</button><button>Spara</button>
+			
 		</div>
 	)
 }

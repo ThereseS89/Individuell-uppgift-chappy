@@ -1,17 +1,19 @@
-async function deleteMessage (messageId) {
-
-	const  data = {
-		id: messageId
+async function deleteMessage (id) {
+	if (!id) {
+		console.log('invalid message id')
+		return false
 	}
-console.log(data);
+	
+
 	const options = {
 		method: 'delete',
-	}
-	console.log(data);
+		
+}
 
-	const response = await fetch(`/messages/${messageId}`, options)
+
+	const response = await fetch(`/messages/${id}`, options)
 	const statusObject = await response.json()
-		if (statusObject.status === 'success') {
+		if (response.ok) {
 			console.log('success');
 			return true
 		}

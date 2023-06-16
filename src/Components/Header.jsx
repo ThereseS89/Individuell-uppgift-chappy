@@ -22,7 +22,7 @@ const Header = () => {
 	return (
 
 	<header>
-		<h1>Chappy</h1>
+		<h1 ><NavLink to={'/'}>Chappy</NavLink></h1>
 		{isLoggedIn ? (
 		<div className="user-status">
 			<span>Inloggad som {loggedInUsername}</span> 

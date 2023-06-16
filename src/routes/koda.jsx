@@ -2,18 +2,30 @@ import { useState, useEffect } from "react"
 import { postMessage } from "../utils/postmessages.js"
 import { getMessages } from "../utils/getmessages.js"
 import { setStoreToken } from "../atoms/storeToken.js";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical} from '@fortawesome/free-solid-svg-icons'
+import Settings from "../Components/settings.jsx";
+import { setIdToDeleteState } from "../atoms/setIdToDeleteState.js";
+import { editMessageIdState } from "../atoms/editmessageIdState.js";
+import { putMessage } from "../utils/putMessages.js";
+import { setEditedMessageState } from "../atoms/setEditedMessageState.js";
+import {setShowInputEditState} from '../atoms/setShowInputEditState.js'
 
 const Koda = () => {
 	const [messages, setMessages] = useState([])
 	const [newMessage, setNewMessage] = useState('')
 	const channelName = 'koda'
 	const username = useRecoilValue(setStoreToken);
+	const [ messageIdSave, setMessageIdSave ] = useState(null)
+	const [idToDelete, setIdToDelete ] = useRecoilState(setIdToDeleteState)
+	const [editMessageId, setEditMessageId] = useRecoilState(editMessageIdState)
+	const [editedMessage, setEditedMessage] = useRecoilState(setEditedMessageState)
+	const [showInputEdit, setShowInputEdit] = useRecoilState(setShowInputEditState)
+
 	console.log('användarnamnet från recoilstate:' ,username)
 
-	useEffect(() => {
+	
 		const fetchMessages = async () => {
 			console.log('fetchmessages körs')
 			try {
@@ -30,8 +42,12 @@ const Koda = () => {
 			}
 			
 		}
-		fetchMessages()
-	}, [])
+		
+	
+
+		useEffect(() => {
+			fetchMessages();
+		}, []);
 
 	
 
@@ -48,18 +64,67 @@ const Koda = () => {
 			} catch (error) {
 				console.log(error)
 			}
-		
+			fetchMessages()
 		}
 
 		const handleNewMessage = (event) => {
 			setNewMessage(event.target.value)
 		}
 
+		const handleEditMessage = (e) => {
+			setEditedMessage({ ...editedMessage, message: e.target.value});
+		};
+
 		console.log('messages: ', messages)
 
-		function showSettings() {
+		function handleShowSettings(messageId) {
+			console.log(messageIdSave)
+			setIdToDelete(messageId)
+			
+			if(messageIdSave === messageId) {
+				setMessageIdSave(null)
+			} else {
+				setMessageIdSave(messageId)
+			}
+			setEditMessageId(messageId)
+			console.log('Du klickade på knappen')
+		}
+
+		const handleSave = async (messageId) => {
+			
+
+			const updatedMessage = {
+				
+				channel: 'koda',
+				sender: username,
+				...editedMessage,
+			};
+
+			const updatedMessages = messages.map((message) => {
+				if (message.id === messageId) {
+					return {
+						...message,
+						...updatedMessage
+					}
+				}
+				return message
+			})
+
+			setMessages(updatedMessages)
+		
+			console.log('Du klickade på kanppen save')
+			await putMessage(messageId, updatedMessage)
+	
+			setEditMessageId(null)
+			setEditedMessage('')
+			setShowInputEdit(false)
+
+			fetchMessages()
+
 			
 		}
+
+		
 
 	return (
 		<section>
@@ -71,10 +136,24 @@ const Koda = () => {
 
 			<section className="history">
 				{messages.map((message) => (
+					
 				<section key={message.id} className="align-right">
+					{editedMessage && editedMessage.id === message.id || showInputEdit ? ( 
+						<div>
+							<input
+							type="text"
+							value={editedMessage.message}
+							onChange={handleEditMessage} />
+							<button type="submit" onClick={() => handleSave(message.id)}>Spara</button>
+						</div>
+					) : (
+						<div>
 				<p>{message.sender}</p><br /><p>{message.message}</p>
-				<FontAwesomeIcon onClick={showSettings} icon={faEllipsisVertical} />
-				</section>))}
+				<FontAwesomeIcon onClick={(event) => handleShowSettings(message.id, event)} icon={faEllipsisVertical} />{messageIdSave === message.id ? ( <Settings /> )  : null} 
+				</div>
+					)}
+				</section>
+				))}
 			</section> 
 		
 		<section>
